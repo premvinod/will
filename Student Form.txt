@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Form</title>
+</head>
+<body>
+
+<h2>Student Information Form</h2>
+
+<form action="/submit_student_info" method="post">
+  <label for="studentName">Student Name:</label><br>
+  <input type="text" id="studentName" name="studentName"><br>
+  
+  <label for="studentAddress">Student Address:</label><br>
+  <textarea id="studentAddress" name="studentAddress" rows="4" cols="50"></textarea><br>
+  
+  <label for="programCode">Program Code:</label><br>
+  <select id="programCode" name="programCode">
+    <option value="cs">Computer Science</option>
+    <option value="ee">Electrical Engineering</option>
+    <option value="me">Mechanical Engineering</option>
+    <!-- Add more program codes as needed -->
+  </select><br>
+  
+  <p>Optional Courses:</p>
+  <input type="radio" id="dbms" name="optionalCourse" value="DBMS">
+  <label for="dbms">DBMS</label><br>
+  <input type="radio" id="oops" name="optionalCourse" value="OOPS">
+  <label for="oops">OOPS</label><br>
+  
+  <p>Interests:</p>
+  <input type="checkbox" id="prog" name="interest" value="Programming">
+  <label for="prog">Programming</label><br>
+  <input type="checkbox" id="db" name="interest" value="Database">
+  <label for="db">Database</label><br>
+  
+  <input type="submit" value="Submit">
+</form> 
+
+</body>
+</html>
