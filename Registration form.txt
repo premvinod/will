@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<Script> src="script.js"></script>
+</head>
+<body>
+
+<h2>User Registration</h2>
+
+<form name="myForm" onsubmit="return validateform()" method="post" action="submit_form.php">
+  <label for="fname">First Name:</label><br>
+  <input type="text" id="fname" name="fname"><br>
+  
+  <label for="mname">Middle Name:</label><br>
+  <input type="text" id="mname" name="mname"><br>
+  
+  <label for="lname">Last Name:</label><br>
+  <input type="text" id="lname" name="lname"><br>
+  
+  <label for="email">Email ID:</label><br>
+  <input type="email" id="email" name="email"><br>
+  
+  <label for="phone">Phone:</label><br>
+  <input type="tel" id="phone" name="phone"><br>
+  
+  <label for="comment">Comment:</label><br>
+  <textarea id="comment" name="comment" rows="4" cols="50"></textarea><br>
+  
+  <input type="submit" value="Submit">
+</form> 
+
+</body>
+</html>
+
+
+<!--JAVAScript for Validation
+--------------------------z-->
+
+function validateForm() {
+  var firstName = document.getElementById('fname').value;
+  var lastName = document.getElementById('lname').value;
+  var email = document.getElementById('email').value;
+  var phone = document.getElementById('phone').value;
+
+  // Regular expression patterns
+  var namePattern = /^[a-zA-Z'-]+$/;
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var phonePattern = /^\d{10}$/;
+
+  // Validate First Name
+  if (!namePattern.test(firstName)) {
+    alert('Please enter a valid first name.');
+    return false;
+  }
+
+  // Validate Last Name
+  if (!namePattern.test(lastName)) {
+    alert('Please enter a valid last name.');
+    return false;
+  }
+
+  // Validate Email
+  if (!emailPattern.test(email)) {
+    alert('Please enter a valid email address.');
+    return false;
+  }
+
+  // Validate Phone
+  if (!phonePattern.test(phone)) {
+    alert('Please enter a valid phone number (10 digits).');
+    return false;
+  }
+
+  return true; // Form is valid
+}
