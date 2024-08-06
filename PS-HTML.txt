@@ -1,0 +1,674 @@
+<!-- Design a web page which is like 'compose' page of e-mail and do the validation checks.  -->
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <title>Compose Box</title>
+ </head>
+ <body>
+        <form>
+
+            <label>To</label>
+            <input type="text" id="to">
+            <br><br>
+
+            <label>Add CC</label>
+            <input type="text" id="cc">
+            <br><br>
+
+            <label>Subject</label>
+            <input type="text" id="subject">
+            <br><br>
+
+            <label>Message</label>
+            <textarea id="message"></textarea>
+
+            <br><br>
+            <input type="submit" value="Submit Form">
+            
+            <button type="reset">Cancel</button>
+            
+            <button>Attach</button>
+        </form>
+
+ </body>
+ </html>
+
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+<!-- Write the HTML code to generate the following table with dummy data (at least 5 records) -->
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <title>HTML Table Program 2</title>
+    <style>
+        table {
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        tr, th, td {
+            border: 2px dashed tomato;
+            padding: 10px;
+        }
+
+    </style>
+ </head>
+ <body>
+    
+    <table>
+        <thead>
+            <tr>
+                <th rowspan="2">Meter No.</th>
+                <th rowspan="2">Unit</th>
+            </tr>
+            <tr>
+                <th colspan="2">Bill consumption (current)</th>
+                <th colspan="2">Bill consumption (previous)</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                
+                <th>Date Of Meter Reading</th>
+                <th>Reading</th>
+
+                <th>Date Of Meter Reading</th>
+                <th>Reading</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>ASF10211</td>
+                <td>702</td>
+                <td>20/05/2024</td>
+                <td>409 k/w</td>
+                <td>20/05/2024</td>
+                <td>209 k/w</td>
+            </tr>
+            <tr>
+                <td>ASF10211</td>
+                <td>702</td>
+                <td>20/05/2024</td>
+                <td>409 k/w</td>
+                <td>20/05/2024</td>
+                <td>209 k/w</td>
+            </tr>
+            <tr>
+                <td>ASF10211</td>
+                <td>702</td>
+                <td>20/05/2024</td>
+                <td>409 k/w</td>
+                <td>20/05/2024</td>
+                <td>209 k/w</td>
+            </tr>
+        </tbody>
+    </table>
+ </body>
+ </html>
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+
+<!-- Create a form in HTML to submit electricity Bill on-line and perform the validation checks using the JavaScript. The following fields may be used : 
+- Consumer No,
+- Address,
+- sanctioned load (kW),
+- circle/ zone (to be selected) 
+- Mobile No. -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form In HTML</title>
+    <style>
+        form {
+            width: 300px;
+            margin: auto;
+        }
+        label, input, select {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Electricity Bill Submission Form</h2>
+
+    <form name="billForm" onsubmit="return validateForm()">
+        <label>Consumer No:</label>
+        <input type="text" id="consumerNo">
+
+        <label>Address:</label>
+        <input type="text" id="address">
+
+        <label>Sanctioned Load (kW):</label>
+        <input type="text" id="sanctionedLoad">
+
+        <label>Circle/Zone:</label>
+        <select id="circleZone">
+            <option value="Select Circle/Zone">Select Circle/Zone</option>
+            <option value="Zone 1">Zone 1</option>
+            <option value="Zone 2">Zone 2</option>
+            <option value="Zone 3">Zone 3</option>
+        </select>
+
+        <label>Mobile No:</label>
+        <input type="text" id="mobileNo">
+
+        <input type="submit" value="Submit Form">
+    </form>
+
+        <script>
+        function validateForm() {
+            var values = "";
+            
+            // document.forms["FormName"]["IdOfElement"].value;
+
+            var consumerNo = document.forms["billForm"]["consumerNo"].value;
+            var address = document.forms["billForm"]["address"].value;
+            var sanctionedLoad = document.forms["billForm"]["sanctionedLoad"].value;
+            var circleZone = document.forms["billForm"]["circleZone"].value;
+            var mobileNo = document.forms["billForm"]["mobileNo"].value;
+
+            // Validate Consumer No
+            if (consumerNo == "") {
+                alert("Consumer No must be filled out");
+                return false;
+            }
+            else {
+                values += "\nConsumer No. = " + consumerNo;
+            }
+
+            // Validate Address
+            if (address == "") {
+                alert("Address must be filled out");
+                return false;
+            }
+            else {
+                values += "\nAddress = " + address;
+            }
+
+            // Validate Sanctioned Load (must be a positive number)
+            if (sanctionedLoad == "" || isNaN(sanctionedLoad) || sanctionedLoad <= 0) {
+                alert("Please enter a valid sanctioned load (kW)");
+                return false;
+            }
+            else {
+                values += "\nsanctioned load (kW) = " + sanctionedLoad;
+            }
+
+            // Validate Circle/Zone selection
+            if (circleZone == "Select Circle/Zone") {
+                alert("Please select a Circle/Zone");
+                return false;
+            }
+            else {
+                values += "\nCircle/Zone = " + circleZone;
+            }
+
+            // Validate Mobile No (must be a 10-digit number)
+            var mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobileNo)) {
+                alert("Please enter a valid 10-digit Mobile No");
+                return false;
+            }
+            else {
+                values += "\nMobile No = " + mobileNo;
+            }
+
+            alert(values);
+
+            return true;
+        }
+    </script>
+
+</body>
+</html>
+
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Type 3</title>
+    <style>
+        * {
+            font-family: Poppins;
+        }
+        label {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <form>
+
+        <label>Information available on the website :</label>
+        <br>
+        <!-- &NonBreakingSpace; -->
+        Very Good <input type="radio" id="veryGood"> &nbsp;&nbsp;&nbsp;&nbsp;
+        Good <input type="radio" id="good">&nbsp;&nbsp;&nbsp;&nbsp;
+        Satisfactory <input type="radio" id="satisfactory">
+        <br><br>
+
+        <label>Overall experience using this website :</label>
+        <br>
+        Very Good <input type="radio" id="veryGood"> &nbsp;&nbsp;&nbsp;&nbsp;
+        Good <input type="radio" id="good">&nbsp;&nbsp;&nbsp;&nbsp;
+        Satisfactory <input type="radio" id="satisfactory">
+        <br><br>
+
+        <label>Comments:</label>
+        <input type="text" id="comments">
+        <br><br>
+
+        <label>Your Name:</label>
+        <input type="text" id="name">
+        <br><br>
+
+        <label>Your Address:</label>
+        <textarea id="address"></textarea>
+        <br><br>
+
+        <label>Your Email:</label>
+        <input type="email" id="email">
+        <br><br>
+
+        <input type="reset"> &NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;&NonBreakingSpace;
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+
+<!-- Create a form in HTML containing the following fields and perform the validation of each field using VB script.
+- Name
+- Adddress
+- Program (Select from the list)
+- Regional centre (select from the list) 
+- Mobile
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Form Validation</title>
+</head>
+<body>
+
+<form name="registrationForm" onsubmit="return ValidateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address"><br><br>
+
+        <label for="program">Program:</label><br>
+        <select id="program" name="program">
+            <option value="Select Program">Select Program</option>
+            <option value="Program 1">Program 1</option>
+            <option value="Program 2">Program 2</option>
+            <option value="Program 3">Program 3</option>
+        </select>
+        <br>
+        <br>
+
+        <label for="regionalCentre">Regional Centre:</label><br>
+        <select id="regionalCentre" name="regionalCentre">
+            <option value="Select Regional Centre">Select Regional Centre</option>
+            <option value="Centre 1">Centre 1</option>
+            <option value="Centre 2">Centre 2</option>
+            <option value="Centre 3">Centre 3</option>
+        </select>
+        <br>
+        <br>
+
+        <label for="mobile">Mobile:</label><br>
+        <input type="text" id="mobile" name="mobile">
+        <br>
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script type="text/vbscript">
+        Function ValidateForm()
+            Dim name, address, program, regionalCentre, mobile
+
+            name = Document.forms("registrationForm")("name").value
+            address = Document.forms("registrationForm")("address").value
+            program = Document.forms("registrationForm")("program").value
+            regionalCentre = Document.forms("registrationForm")("regionalCentre").value
+            mobile = Document.forms("registrationForm")("mobile").value 
+
+            ' Validate Name
+            If name = "" Then
+                        MsgBox "Name must be filled out"
+                        ValidateForm = False
+                        Exit Function
+            End If  
+            ' Validate Address
+            If address = "" Then
+                        MsgBox "Address must be filled out"
+                        ValidateForm = False
+                        Exit Function
+            End If  
+            ' Validate Program
+            If program = "Select Program" Then
+                        MsgBox "Please select a Program"
+                        ValidateForm = False
+                        Exit Function
+            End If  
+            ' Validate Regional Centre
+            If regionalCentre = "Select Regional Centre" Then
+                        MsgBox "Please select a Regional Centre"
+                        ValidateForm = False
+                        Exit Function
+            End If  
+            ' Validate Mobile
+            If Not IsNumeric(mobile) Or Len(mobile) <> 10 Then
+                        MsgBox "Please enter a valid 10-digit Mobile number"
+                        ValidateForm = False
+                        Exit Function
+            End If  
+            ' If all validations pass
+            ValidateForm = True
+        End Function
+    </script>
+
+</body>
+</html>
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pull Down Menu</title>
+    <style>
+        body {
+    font-family: Poppins;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #262641;
+    color: rgb(255, 251, 130);
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+    </style>
+</head>
+<body>
+    <h1>Pull Down Menu Example</h1>
+
+    <div class="dropdown">
+        <button onclick="toggleMenu()" class="dropbtn">Menu</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="#option1">Option 1</a>
+            <a href="#option2">Option 2</a>
+            <a href="#option3">Option 3</a>
+        </div>
+    </div>
+    <script>
+        function toggleMenu() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scrolling Text</title>
+</head>
+<body>
+    
+    <h2>Scrolling Text in a Text Box</h2>
+
+    <marquee behavior="scroll" direction="left" scrollamount="15">
+        DEVELOPER
+    </marquee>
+
+</body>
+</html>
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table in HTML</title>
+    <style>
+        body{
+            font-family: Poppins;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        tr, th, td {
+            padding: 10px;
+            border: 2px solid tomato;
+        }
+        th {
+            background-color: rgb(42, 40, 54);
+            color: rgb(255, 250, 102);
+        }
+    </style>
+</head>
+<body>
+    
+    <h3 align="center">TEE Result 2010 </h3>
+
+<table align="center">
+<!-- <colgroup>
+<col style="width: 90px">
+<col style="width: 103px">
+<col style="width: 96px">
+<col style="width: 94px">
+<col style="width: 106px">
+<col style="width: 85px">
+<col style="width: 116px">
+</colgroup> -->
+
+<thead>
+  <tr>
+    <th rowspan="2">Student Name</th>
+    <th rowspan="2">Enrollment No.</th>
+    <th rowspan="2">Programme Code</th>
+    <th colspan="3">Course Code</th>
+    <th rowspan="2">Total</th>
+  </tr>
+  <tr>
+    <th>TMA</th>
+    <th>Project</th>
+    <th>TEE</th>
+  </tr>
+</thead>
+<tbody align="center">
+  <tr>
+    <td>Kunal Mendarkar</td>
+    <td>2024A23234</td>
+    <td>BCA</td>
+    <td>1</td>
+    <td>50</td>
+    <td>70</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>Kunal Mendarkar</td>
+    <td>2024A23234</td>
+    <td>BCA</td>
+    <td>1</td>
+    <td>50</td>
+    <td>70</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>Kunal Mendarkar</td>
+    <td>2024A23234</td>
+    <td>BCA</td>
+    <td>1</td>
+    <td>50</td>
+    <td>70</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>Kunal Mendarkar</td>
+    <td>2024A23234</td>
+    <td>BCA</td>
+    <td>1</td>
+    <td>50</td>
+    <td>70</td>
+    <td>200</td>
+  </tr>
+</tbody>
+</table>
+
+</body>
+</html>
+
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+<!-- Write the HTML code to generate the following table with dummy data (at least 5 records) -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table Making in HTML</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 2px dashed rgb(249, 8, 8);
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #d1cece;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <h3>Table MAking in HTML</h3>
+<table>
+    <thead>
+      <tr>
+        <th rowspan="2">City</th>
+        <th colspan="2">Temp</th>
+      </tr>
+
+      <tr>
+        <th>Min</th>
+        <th>Max</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Mumbai</td>
+        <td>36&deg; C</td>
+        <td>40&deg; C</td>
+      </tr>
+
+      <tr>
+        <td>Panvel</td>
+        <td>26&deg; C</td>
+        <td>58&deg; C</td>
+      </tr>
+
+      <tr>
+        <td>Kamothe</td>
+        <td>40&deg; C</td>
+        <td>20&deg; C</td>
+      </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+
+
+<!-- ========================================================-->
+<!-- ========================================================-->
+
+
+
